@@ -1,0 +1,16 @@
+[package]
+authors = ["SET001 <settydark@gmail.com>"]
+categories = ["game-development"]
+description = "!!!"
+edition = "2021"
+keywords = ["bitmask", "tile", "tilemap"]
+license = "MIT OR Apache-2.0"
+name = "tile_bitmasking"
+repository = "https://github.com/SET001/tile_bitmasking.git"
+version = "0.1.0"
+
+[dependencies]
+glam = "0.24.2"
+
+[dev-dependencies]
+rstest = "0.18.2"
