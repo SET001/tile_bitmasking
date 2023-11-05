@@ -6,7 +6,7 @@ pub trait BitMask {
   fn init(size: UVec2) -> Self;
   #[must_use]
   fn get_in_direction_from(&self, from: UVec2, direction: Vec2) -> bool;
-  #[must_use]
+
   fn get_bitmask(&self, position: UVec2) -> Result<i32, String>;
 
   fn get_top_from(&self, position: UVec2) -> i32;
@@ -19,8 +19,7 @@ impl BitMask for HashMap<(u32, u32), bool> {
   fn init(size: UVec2) -> Self {
     Self::from_iter(
       (0..size.x)
-        .map(|x| (0..size.y).map(move |y| ((x, y), false)))
-        .flatten()
+        .flat_map(|x| (0..size.y).map(move |y| ((x, y), false)))
         .collect::<Vec<((u32, u32), bool)>>(),
     )
   }
@@ -52,12 +51,11 @@ impl BitMask for HashMap<(u32, u32), bool> {
   fn get_bitmask(&self, position: UVec2) -> Result<i32, String> {
     self
       .get(&(position.x, position.y))
-      .and_then(|_| {
-        let ground_index = self.get_top_from(position)
+      .map(|_| {
+        self.get_top_from(position)
           + 2 * self.get_left_from(position)
           + 4 * self.get_right_from(position)
-          + 8 * self.get_bottom_from(position);
-        Some(ground_index)
+          + 8 * self.get_bottom_from(position)
       })
       .ok_or("asdasd".into())
   }
