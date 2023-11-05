@@ -1,7 +1,7 @@
 [package]
 authors = ["SET001 <settydark@gmail.com>"]
 categories = ["game-development"]
-description = "!!!"
+description = "crate to get tile bitmask"
 edition = "2021"
 keywords = ["bitmask", "tile", "tilemap"]
 license = "MIT OR Apache-2.0"
